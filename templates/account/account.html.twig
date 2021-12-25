@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="navbar navbar navbar-expand-md ">
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <h4 class="me-auto">Compte</h4>
+            <a style="text-decoration: none;" href="{{path('app_logout')}}">Se déconnecter</a>
+        </div>
+    </div>
+    <hr>
+    </br>
+    </br>
+    <h2>Bonjour {{app.user.firstname}},</h2>
+</div>
+{% endblock %}

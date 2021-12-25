@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form action="{{path('finalReset')}}" method="post">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Mot de passe</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Confirmer Mot de passe</label>
+            <input type="password" name="confirm_password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <input type="hidden" name="id" value="{{ id }}">
+        <button type="submit"> Envoyer</button>
+    </form>
+{% endblock %}

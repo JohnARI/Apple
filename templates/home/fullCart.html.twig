@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+
+
+        <table class="table table-hover m-4">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Retirer</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Ajouter</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in fullCart %}
+                <tr class="table-secondary">
+                    <th scope="row">{{ item.product.id }}</th>
+                    <th>{{ item.product.name }}</th>
+                    <th><a href="{{ path('removeCart',{id:item.product.id}) }}" class="btn btn-primary">-</a></th>
+                    <th>{{ item.quantity }}</th>
+                    <td><a href="{{ path('addCart',{id:item.product.id, route: 'fullCart'}) }}"
+                           class="btn btn-primary">+</a></td>
+                    <td>
+                        <a href="{{ path('deleteCart', {id:item.product.id }) }}"
+                           onclick="return confirm('Etes-vous sûr de vouloir supprimer cette ligne ?')"
+                           class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if app.user %}
+
+
+        <a href="{{ path('finalOrder') }}" class="btn btn-warning">Valider le panier</a>
+            {% else %}
+                <a href="{{ path('login') }}" class="btn btn-success">Connectez-vous pour continuer</a>
+        {% endif %}
+
+        {% if total is defined %}
+            <h2><strong>Montant Total: </strong>{{ total }} €<br></h2>
+            <a href="{{ path('finalOrder') }}" class="btn btn-success">Continuer ?</a>
+        {% endif %}
+
+
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

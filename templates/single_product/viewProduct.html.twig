@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{% for product in singleProduct %} {{ product.name }} - Apple {% endfor %}{% endblock %}
+
+
+{% block body %}
+
+
+{% for product in singleProduct %}
+
+<div class="container">
+    <div class="navbar-expand-md mt-2">
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <h4 class="me-auto">{{product.name}}</h4>
+            <h4>{{product.price}} €</h4>
+        </div>
+    <hr>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <img width="500px" src="{{product.picture}}" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <h1 class="text-center">{{product.name}}</h1>
+
+            <br>
+            <p>{{product.description}}</p>
+            <br>
+            <p>Couleur: {{product.color}}</p>
+            </br>
+            <p>Capacité: {{product.capacity}} Go</p>
+
+        </div>
+  
+
+    {% endfor %}
+
+
+    {% endblock %}
