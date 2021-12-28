@@ -57,8 +57,8 @@ class SecurityController extends AbstractController
             $from = $request->request->get('email');
 
             $email = (new TemplatedEmail())
-                ->from('hello@example.com')
-                ->to('jeanmidupuis978@gmail.com')
+                ->from($from)
+                ->to('john.aristosa@hotmail.com') //TODO: mettre son adresse mail pour recevoir les demandes du client dans la page contact
                 ->subject($motif)
                 ->text('Sending emails is fun again!')
                 ->htmlTemplate('security/template_email.html.twig');
@@ -73,7 +73,8 @@ class SecurityController extends AbstractController
                 'from' => $from,
                 'cid' => $cid,
                 'liens' => 'https://127.0.0.1:8000',
-                'objectif' => 'Accéder au site'
+                'objectif' => 'Accéder au site',
+                'button' => true,
 
             ]);
 
@@ -119,7 +120,7 @@ class SecurityController extends AbstractController
                 ->subject('Demande de réinitialisation de mot de passe')
                 ->text('Sending emails is fun again!')
                 ->htmlTemplate('security/template_email.html.twig');
-            $cid = $email->embedFromPath('uploads/logo.png', 'logo');
+            $cid = $email->embedFromPath('uploads/logo.jfif', 'logo');
 
             // pass variables (name => value) to the template
             $email->context([
@@ -127,10 +128,11 @@ class SecurityController extends AbstractController
                 'nom' => "",
                 'prenom' => "",
                 'subject' => 'demande de réinitialisation',
-                'from' => 'onlyMovie@only.com',
+                'from' => 'apple-john@apple.com', //TODO: ici on met ce que l'on veut
                 'cid' => $cid,
                 'liens' => 'https://127.0.0.1:8000/resetForm?token=' . $token . '&i=' . $user->getId(),
-                'objectif' => 'Réinitialiser'
+                'objectif' => 'Réinitialiser',
+                'button' => true,
 
             ]);
 
@@ -138,7 +140,7 @@ class SecurityController extends AbstractController
 
 
             $this->addFlash('success', 'Un Email vient de vous être envoyer!');
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('app_login');
         else:
             $this->addFlash('danger', 'Aucun compte existant à cette adresse mail');
 
@@ -187,12 +189,12 @@ class SecurityController extends AbstractController
 
             $mdp=$hasher->hashPassword($user, $request->request->get('password'));
             $user->setPassword($mdp);
-            $user->setToken(null);
+            $user->setToken(0);
             $manager->persist($user);
             $manager->flush();
 
             $this->addFlash('success', 'Mot de passe réinitialisé, connectez vous à présent');
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('app_login');
 
         else:
             $this->addFlash('danger', 'Les mots de passe ne correspondent pas');

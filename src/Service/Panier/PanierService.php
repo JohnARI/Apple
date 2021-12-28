@@ -75,5 +75,23 @@ class PanierService
 
     }
 
+    public function getTotal()
+    {
+        $panier = $this->getFullCart();
+        $total = 0;
+        foreach ($panier as $item => $value):
+            // dd($item, $value);
+
+            // dd($value['product']);
+
+            $total += $value['product']->getPrice()*$value['quantity'];
+            
+        endforeach;
+
+        // dd($total);
+        return $total;
+
+    }
+
 
 }

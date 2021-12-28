@@ -13,15 +13,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="form_name">Prénom *</label>
-                            <input id="form_name" type="text" name="name" class="form-control"
-                                   placeholder="Veuillez saisir votre prénom *" required="required"
-                                   data-error="Firstname is required.">
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             <label for="form_lastname">Nom *</label>
                             <input id="form_lastname" type="text" name="surname" class="form-control"
                                    placeholder="Veuillez saisir votre nom *" required="required"
@@ -29,6 +20,16 @@
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="form_name">Prénom *</label>
+                            <input id="form_name" type="text" name="name" class="form-control"
+                                   placeholder="Veuillez saisir votre prénom *" required="required"
+                                   data-error="Firstname is required.">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -56,9 +57,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="form_message">Message *</label>
+                            <label for="form_message">Message</label>
                             <textarea id="form_message" name="message" class="form-control" placeholder="Message *"
-                                      rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                                      rows="4" data-error="Please, leave us a message."></textarea>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>

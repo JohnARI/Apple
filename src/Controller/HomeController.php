@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cart;
-use App\Entity\Panier;
+
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Category;
@@ -46,8 +46,10 @@ class HomeController extends AbstractController
         ($panierService->getFullCart());
 
         if ($route == 'home'):
+            $this->addFlash('success', 'produit ajouté au panier');
             return $this->redirectToRoute('home');
         else:
+            $this->addFlash('success', 'produit ajouté au panier');
             return $this->redirectToRoute('fullCart');
         endif;
 
@@ -89,13 +91,26 @@ class HomeController extends AbstractController
 
         $fullCart = $panierService->getFullCart();
 
+        $total=$panierService->getTotal();
+
         return $this->render('home/fullCart.html.twig', [
             'fullCart' => $fullCart,
+            'total'=>$total
 
 
         ]);
 
     }
+
+    /**
+     * @Route("/delivery", name="delivery")
+     */
+    public function delivery()
+    {
+        
+        return $this->render('home/delivery.html.twig');
+    }
+    
 
 
     /**
@@ -111,6 +126,12 @@ class HomeController extends AbstractController
             $order = new Order();
             $order->setDate(new \DateTime())->setUser($this->getUser());
             $panier = $panierService->getFullCart();
+            
+//            $delivery=new Delivery();
+//            
+//            $delivery->setOrder($order)->setStreet($request->request->get('street'));
+//                
+//                $manager->persist($delivery);
 
             foreach ($panier as $item):
 

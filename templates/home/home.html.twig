@@ -3,6 +3,17 @@
 {% block title %}Accueil - Apple{% endblock %}
 
 {% block body %}
+{% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
 <header class="bg-light py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-black">
